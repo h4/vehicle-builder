@@ -9,6 +9,8 @@ aiohttp = "*"
 [dev-packages]
 flake8 = "*"
 pytest = "*"
+codecov = "*"
+pytest-cov = "*"
 
 [requires]
 python_version = "3.7"
