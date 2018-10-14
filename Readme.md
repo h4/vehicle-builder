@@ -1,1 +1,1 @@
-# Vehicle Builder [![Build Status](https://travis-ci.org/h4/vehicle-builder.svg?branch=master)](https://travis-ci.org/h4/vehicle-builder)
+# Vehicle Builder [![Build Status](https://travis-ci.org/h4/vehicle-builder.svg?branch=master)](https://travis-ci.org/h4/vehicle-builder) [![codecov](https://codecov.io/gh/h4/vehicle-builder/branch/master/graph/badge.svg)](https://codecov.io/gh/h4/vehicle-builder)
