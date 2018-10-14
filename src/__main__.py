@@ -1,7 +1,7 @@
 from aiohttp import web
 
 
-async def root_handler(request):
+async def root_handler(_):
     payload = [
         {'data': 'vehicle builder api'},
     ]
