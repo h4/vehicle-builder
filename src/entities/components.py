@@ -22,7 +22,7 @@ class Component:
     price: Decimal
     status: ProductionStatus = ProductionStatus.DESIGN
     properties: List["ComponentProperty"] = field(default_factory=list)
-    
+
     def add_property(self, prop):
         if prop not in self.properties:
             self.properties.append(prop)

@@ -1,6 +1,6 @@
 from decimal import Decimal
 
-from entities.components import Component, ProductionStatus
+from entities.components import Component
 from entities.iterfaces import Interface
 from entities.functions import Feature, Function
 from entities.vehicle import Vehicle, VehicleProperty, VehicleConfiguration
