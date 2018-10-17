@@ -1,9 +1,9 @@
 from dataclasses import dataclass, field
 from typing import List
 
-from .components import Component
-from .iterfaces import Interface
-from .functions import Feature, Function
+from entities.components import Component
+from entities.iterfaces import Interface
+from entities.functions import Feature, Function
 
 
 @dataclass

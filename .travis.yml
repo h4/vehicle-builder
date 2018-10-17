@@ -8,5 +8,5 @@ install:
   - 'pipenv install --dev'
 script:
   - 'flake8 src'
-  - 'pytest src --cov=./'
+  - 'PYTHONPATH=src pytest src --cov=./'
   - 'codecov'

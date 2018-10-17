@@ -1,7 +1,7 @@
 import pytest
 
-from ..exceptions import ValidationError
-from ..functions import Group, Feature, Function
+from common.exceptions import ValidationError
+from entities.functions import Group, Feature, Function
 
 
 class TestGroup:

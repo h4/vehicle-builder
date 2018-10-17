@@ -1,9 +1,9 @@
 from decimal import Decimal
 
-from ..components import Component, ProductionStatus
-from ..iterfaces import Interface
-from ..functions import Feature, Function
-from ..vehicle import Vehicle, VehicleProperty, VehicleConfiguration
+from entities.components import Component, ProductionStatus
+from entities.iterfaces import Interface
+from entities.functions import Feature, Function
+from entities.vehicle import Vehicle, VehicleProperty, VehicleConfiguration
 
 
 class TestVehicle:
