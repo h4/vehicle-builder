@@ -3,7 +3,7 @@ from decimal import Decimal
 from ..components import Component, ProductionStatus
 from ..iterfaces import Interface
 from ..functions import Feature, Function
-from ..vehicle import Vehicle, VehicleProperty, VehicleConfiguration, ComponentLink
+from ..vehicle import Vehicle, VehicleProperty, VehicleConfiguration
 
 
 class TestVehicle:
