@@ -12,6 +12,7 @@ flake8 = "*"
 pytest = "*"
 codecov = "*"
 pytest-cov = "*"
+pytest-aiohttp = "*"
 
 [requires]
 python_version = "3.7"

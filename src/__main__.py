@@ -1,16 +1,7 @@
 from aiohttp import web
 
+from application import make_app
 
-async def root_handler(_):
-    payload = [
-        {'data': 'vehicle builder api'},
-    ]
-    return web.json_response(payload)
-
-
-app = web.Application()
-app.add_routes([
-    web.get('/', root_handler)
-])
+app = make_app()
 
 web.run_app(app)
