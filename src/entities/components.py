@@ -1,6 +1,7 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from decimal import Decimal
 from enum import Enum, auto
+from typing import List
 
 
 class ProductionStatus(Enum):
@@ -19,7 +20,12 @@ class Component:
     provider: str
     weight: float
     price: Decimal
-    status: ProductionStatus
+    status: ProductionStatus = ProductionStatus.DESIGN
+    properties: List["ComponentProperty"] = field(default_factory=list)
+    
+    def add_property(self, prop):
+        if prop not in self.properties:
+            self.properties.append(prop)
 
 
 @dataclass

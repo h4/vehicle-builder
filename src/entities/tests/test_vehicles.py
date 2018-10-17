@@ -51,7 +51,7 @@ class TestVehicleConfiguration:
 class TestLinkComponentsToVehicle:
     def test_can_add_component(self):
         interface_1 = Interface('Interface 1')
-        component_1 = Component('Component 1', 'cad', 'sku', 'provider', 0.1, Decimal(12.2), ProductionStatus.DESIGN)
+        component_1 = Component('Component 1', 'cad', 'sku', 'provider', 0.1, Decimal(12.2))
         vehicle = Vehicle('New Vehicle', 1000)
         feature_1 = Feature('Feature 1')
         func_1 = Function('Function 1')
