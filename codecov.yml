@@ -1,2 +1,2 @@
 ignore:
-  - "__main__.py"
+  - "src/__main__.py"
