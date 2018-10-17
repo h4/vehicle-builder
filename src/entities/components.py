@@ -4,11 +4,11 @@ from enum import Enum, auto
 
 
 class ProductionStatus(Enum):
-    DESIGN: auto()
-    PRODUCTION: auto()
-    ORDERED: auto()
-    IN_STOCK: auto()
-    DEPRECATED: auto()
+    DESIGN = auto()
+    PRODUCTION = auto()
+    ORDERED = auto()
+    IN_STOCK = auto()
+    DEPRECATED = auto()
 
 
 @dataclass
@@ -19,6 +19,7 @@ class Component:
     provider: str
     weight: float
     price: Decimal
+    status: ProductionStatus
 
 
 @dataclass
