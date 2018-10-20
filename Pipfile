@@ -5,7 +5,8 @@ name = "pypi"
 
 [packages]
 aiohttp = "*"
-pytest = "*"
+asyncpgsa = "*"
+sqlalchemy = "*"
 
 [dev-packages]
 flake8 = "*"
