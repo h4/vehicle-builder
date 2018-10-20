@@ -25,21 +25,21 @@ async def init():
 @pytest.mark.skip
 class TestVehiclesRepository:
     async def test_returns_vehicles_list(self):
-        conn = await init()
+        await init()
         repository = VehiclePGRepository(pg)
         vehicles = await repository.get_all()
 
         assert len(vehicles) > 0
 
     async def test_returns_vehicle_by_id(self):
-        conn = await init()
+        await init()
         repository = VehiclePGRepository(pg)
         vehicle = await repository.find_by_id(1)
 
         assert vehicle.id == 1
 
     async def test_returns_none_if_nothing_found(self):
-        conn = await init()
+        await init()
         repository = VehiclePGRepository(pg)
         vehicle = await repository.find_by_id(100500)
 
