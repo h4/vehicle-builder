@@ -37,7 +37,7 @@ class VehicleConfiguration(BaseEntity):
 
     def add_feature(self, feature: Feature):
         self._validate_set_feature(feature)
-        
+
         if feature not in self.features:
             self.features.append(feature)
             for func in feature.functions:
