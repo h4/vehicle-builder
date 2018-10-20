@@ -1,6 +1,7 @@
 import pytest
 from asyncpgsa import pg
 
+from db.models.vehicles import VehicleModel
 from db.tables import vehicles
 
 HOST = 'localhost'
@@ -29,5 +30,5 @@ async def test_connection():
     query = vehicles.select()
     async with pg.query(query) as cursor:
         async for row in cursor:
-            print(row)
+            print(VehicleModel.from_record(row))
             assert 'title' in row
