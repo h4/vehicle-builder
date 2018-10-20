@@ -3,6 +3,8 @@ from decimal import Decimal
 from enum import Enum, auto
 from typing import List
 
+from entities.base import BaseEntity
+
 
 class ProductionStatus(Enum):
     DESIGN = auto()
@@ -13,7 +15,7 @@ class ProductionStatus(Enum):
 
 
 @dataclass
-class Component:
+class Component(BaseEntity):
     title: str
     cad_model: str
     sku: str
@@ -21,7 +23,7 @@ class Component:
     weight: float
     price: Decimal
     status: ProductionStatus = ProductionStatus.DESIGN
-    properties: List["ComponentProperty"] = field(default_factory=list)
+    properties: List["ComponentProperty"] = field(init=False, default_factory=list)
 
     def add_property(self, prop):
         if prop not in self.properties:
@@ -29,6 +31,6 @@ class Component:
 
 
 @dataclass
-class ComponentProperty:
+class ComponentProperty(BaseEntity):
     title: str
     value: any

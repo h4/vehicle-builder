@@ -2,6 +2,7 @@ from dataclasses import dataclass, field
 from typing import List
 
 from common.exceptions import ValidationError
+from entities.base import BaseEntity
 
 
 @dataclass
@@ -14,7 +15,7 @@ class Feature:
 
 
 @dataclass
-class Group:
+class Group(BaseEntity):
     title: str
     features: List["Feature"] = field(default_factory=list)
     parent_group: "Group" = None
@@ -40,5 +41,5 @@ class Group:
 
 
 @dataclass
-class Function:
+class Function(BaseEntity):
     title: str

@@ -1,6 +1,8 @@
 from dataclasses import dataclass
 
+from entities.base import BaseEntity
+
 
 @dataclass
-class Interface:
+class Interface(BaseEntity):
     title: str

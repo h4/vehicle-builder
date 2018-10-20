@@ -1,13 +1,14 @@
 from dataclasses import dataclass, field
 from typing import List
 
+from entities.base import BaseEntity
 from entities.components import Component
 from entities.iterfaces import Interface
 from entities.functions import Feature, Function
 
 
 @dataclass
-class Vehicle:
+class Vehicle(BaseEntity):
     title: str
     range: int
     properties: List["VehicleProperty"] = field(default_factory=list)
@@ -18,13 +19,13 @@ class Vehicle:
 
 
 @dataclass
-class VehicleProperty:
+class VehicleProperty(BaseEntity):
     title: str
     value: any
 
 
 @dataclass
-class VehicleConfiguration:
+class VehicleConfiguration(BaseEntity):
     vehicle: "Vehicle"
     features: List[Feature] = field(default_factory=list)
     functions: List["VehicleFunction"] = field(default_factory=list)
@@ -50,7 +51,7 @@ class VehicleConfiguration:
 
 
 @dataclass
-class VehicleFunction:
+class VehicleFunction(BaseEntity):
     function: Function
     components: List["ComponentLink"] = field(default_factory=list)
     is_frozen: bool = False
@@ -64,6 +65,6 @@ class VehicleFunction:
 
 
 @dataclass
-class ComponentLink:
+class ComponentLink(BaseEntity):
     component: Component
     interface: Interface
