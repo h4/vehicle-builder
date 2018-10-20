@@ -8,6 +8,7 @@ from entities.base import BaseEntity
 @dataclass
 class Feature:
     title: str
+    parent_group: 'Group' = None
     functions: List["Function"] = field(default_factory=list)
 
     def add_function(self, func: "Function"):
@@ -23,6 +24,7 @@ class Group(BaseEntity):
     subgroups: List["Group"] = field(default_factory=list)
 
     def add_feature(self, feature: "Feature"):
+        feature.parent_group = self
         self.features.append(feature)
 
     @property

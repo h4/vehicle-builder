@@ -1,6 +1,7 @@
 from dataclasses import dataclass, field
 from typing import List
 
+from common.exceptions import ValidationError
 from entities.base import BaseEntity
 from entities.components import Component
 from entities.iterfaces import Interface
@@ -35,6 +36,8 @@ class VehicleConfiguration(BaseEntity):
         self.functions.append(vehicle_function)
 
     def add_feature(self, feature: Feature):
+        self._validate_set_feature(feature)
+        
         if feature not in self.features:
             self.features.append(feature)
             for func in feature.functions:
@@ -48,6 +51,12 @@ class VehicleConfiguration(BaseEntity):
     @property
     def is_fulfilled(self):
         return all(f.is_fulfilled for f in self.functions)
+
+    def _validate_set_feature(self, feature):
+        if feature.parent_group is not None and feature.parent_group.is_set:
+            for f in self.features:
+                if f.parent_group == feature.parent_group:
+                    raise ValidationError('Can\'t add two features from same set')
 
 
 @dataclass

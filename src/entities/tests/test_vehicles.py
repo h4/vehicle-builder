@@ -1,8 +1,11 @@
 from decimal import Decimal
 
+import pytest
+
+from common.exceptions import ValidationError
 from entities.components import Component
 from entities.iterfaces import Interface
-from entities.functions import Feature, Function
+from entities.functions import Feature, Function, Group
 from entities.vehicle import Vehicle, VehicleProperty, VehicleConfiguration
 
 
@@ -46,6 +49,19 @@ class TestVehicleConfiguration:
         configuration.add_feature(feature_2)
 
         assert len(configuration.functions) == 4
+
+    def test_can_not_add_two_features_from_set(self):
+        vehicle = Vehicle('New Vehicle', 1000)
+        feature_1 = Feature('Feature 1')
+        feature_2 = Feature('Feature 2')
+        features_set = Group('Set', is_set=True)
+        features_set.add_feature(feature_1)
+        features_set.add_feature(feature_2)
+        configuration = VehicleConfiguration(vehicle)
+        configuration.add_feature(feature_1)
+
+        with pytest.raises(ValidationError):
+            configuration.add_feature(feature_2)
 
 
 class TestLinkComponentsToVehicle:

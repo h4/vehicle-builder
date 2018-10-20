@@ -44,3 +44,10 @@ class TestFeature:
         feature.add_function(func)
 
         assert func in feature.functions
+
+    def test_can_get_feature_parent_group(self):
+        group = Group('New Group')
+        feature = Feature('New Feature')
+        group.add_feature(feature)
+
+        assert feature.parent_group == group
