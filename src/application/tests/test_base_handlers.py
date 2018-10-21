@@ -1,6 +1,3 @@
-from aiohttp import web
-
-
 async def test_root(aiohttp_client, app):
     client = await aiohttp_client(app)
     resp = await client.get('/')
