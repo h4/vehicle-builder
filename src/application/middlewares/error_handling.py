@@ -17,5 +17,11 @@ def error_pages(overrides):
                     raise
                 else:
                     return await override(request, ex)
+            except Exception as ex:
+                override = overrides.get(500)
+                if override is None:
+                    raise
+                else:
+                    return await override(request, ex)
         return middleware_handler
     return middleware
