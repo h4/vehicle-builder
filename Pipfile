@@ -6,6 +6,8 @@ name = "pypi"
 [packages]
 aiohttp = "*"
 asyncpgsa = "*"
+gino = "*"
+marshmallow = "*"
 sqlalchemy = "*"
 
 [dev-packages]
