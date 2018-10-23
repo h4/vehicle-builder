@@ -6,9 +6,7 @@ from sqlalchemy import Table
 
 from db import tables
 from models.base import Model, ToManyRelation
-from models.components import Component
-from models.groups import Feature, Function, Group
-from models.interfaces import Interface
+from models.groups import Feature, Function
 
 
 @dataclass

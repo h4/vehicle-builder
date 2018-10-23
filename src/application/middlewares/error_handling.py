@@ -2,8 +2,8 @@ from logging import getLogger
 
 from aiohttp import web
 
-
 logger = getLogger(__file__)
+
 
 def error_pages(overrides):
     async def middleware(app, handler):
@@ -29,5 +29,7 @@ def error_pages(overrides):
                     raise
                 else:
                     return await override(request, ex)
+
         return middleware_handler
+
     return middleware

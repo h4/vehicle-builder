@@ -72,7 +72,7 @@ groups = sa.Table(
 
     sa.CheckConstraint(
         """
-        (is_set = FALSE) OR (parent_id NOTNULL) 
+        (is_set = FALSE) OR (parent_id NOTNULL)
         """,
         name='ck_groups__set_has_parent'
     )
