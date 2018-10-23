@@ -14,7 +14,9 @@ async def vehicle_list_handler(request):
 
     result = {
         'data': vehicle_schema.dump(vehicles, many=True).data,
-        'included': vehicle_property_schema.dump(properties, many=True).data
+        'included': {
+            'properties': vehicle_property_schema.dump(properties, many=True).data,
+        }
     }
     return json_response(result)
 

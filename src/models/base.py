@@ -42,7 +42,7 @@ class ToManyRelation:
 
 @dataclass
 class Model:
-    _tablename: ClassVar[sa.Table]
+    _tablename: ClassVar[sa.Table] = None
     _pk: ClassVar[str] = 'id'
     _to_one_relations: ClassVar[Dict[str, sa.Table]] = {}
     _to_many_relations: ClassVar[Dict[str, ToManyRelation]] = {}
