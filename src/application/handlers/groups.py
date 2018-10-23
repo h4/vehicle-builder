@@ -1,5 +1,4 @@
-from aiohttp.web_response import json_response
-
+from application.response import json_response
 from models.groups import Group, Feature, Function
 from schemas.groups import GroupSchema, FeatureSchema, FunctionSchema
 

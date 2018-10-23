@@ -1,5 +1,4 @@
-from aiohttp.web_response import json_response, Response
-
+from application.response import json_response
 from models.components import Component
 from models.configurations import VehicleFunctions, VehicleConnections
 from models.groups import Feature, Function

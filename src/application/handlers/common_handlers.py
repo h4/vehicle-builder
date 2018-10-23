@@ -1,4 +1,4 @@
-from aiohttp.web_response import json_response
+from application.response import json_response
 
 
 async def root_handler(request):
