@@ -5,17 +5,19 @@ name = "pypi"
 
 [packages]
 aiohttp = "*"
+alembic = "*"
 asyncpgsa = "*"
-gino = "*"
 marshmallow = "*"
+"psycopg2-binary" = "*"
 sqlalchemy = "*"
+sqlalchemy-utils = "*"
 
 [dev-packages]
+codecov = "*"
 flake8 = "*"
 pytest = "*"
-codecov = "*"
-pytest-cov = "*"
 pytest-aiohttp = "*"
+pytest-cov = "*"
 
 [requires]
 python_version = "3.7"

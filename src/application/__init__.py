@@ -2,20 +2,26 @@ from aiohttp import web
 
 from application.middlewares import setup_middlewares
 from application.routes import build_routes
-from models.base import db
-from models.utils import migrate
+from settings import Settings
 
 
 async def init_db(app):
-    conn = await db.set_bind('postgresql://postgres:password@localhost/vehicle_builder')
-    app['conn'] = conn
-    async with app['conn'].acquire():
-        await migrate()
+    from asyncpgsa import pg
+    await pg.init(
+        host=Settings.db_host,
+        port=Settings.db_port,
+        database=Settings.db_name,
+        user=Settings.db_user,
+        password=Settings.db_pass,
+        min_size=5,
+        max_size=10
+    )
+    app.on_cleanup.append(close_db)
 
 
-async def close_db(app):
-    app['db'].close()
-    await app['db'].wait_closed()
+async def close_db(_):
+    from asyncpgsa import pg
+    await pg.pool.close()
 
 
 def make_app():
@@ -23,5 +29,4 @@ def make_app():
     build_routes(app)
     setup_middlewares(app)
     app.on_startup.append(init_db)
-    app.on_cleanup.append(close_db)
     return app

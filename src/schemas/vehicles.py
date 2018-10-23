@@ -5,10 +5,10 @@ class VehicleSchema(Schema):
     id = fields.Int()
     title = fields.String()
     range = fields.Int()
-    properties = fields.Nested('VehiclePropertySchema', many=True)
+    properties = fields.List(fields.Int())
 
 
 class VehiclePropertySchema(Schema):
     id = fields.Int()
-    title = fields.String()
+    property_name = fields.String(dump_to='name')
     value = fields.String()

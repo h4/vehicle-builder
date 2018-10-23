@@ -1,5 +1,9 @@
+from logging import getLogger
+
 from aiohttp import web
 
+
+logger = getLogger(__file__)
 
 def error_pages(overrides):
     async def middleware(app, handler):
@@ -12,12 +16,14 @@ def error_pages(overrides):
                 else:
                     return await override(request, response)
             except web.HTTPException as ex:
+                logger.exception(ex)
                 override = overrides.get(ex.status)
                 if override is None:
                     raise
                 else:
                     return await override(request, ex)
             except Exception as ex:
+                logger.exception(ex)
                 override = overrides.get(500)
                 if override is None:
                     raise

@@ -1,28 +1,30 @@
-from models.base import BaseModel, db
+from dataclasses import dataclass, field
+from typing import ClassVar, Dict, List, Optional
+
+from sqlalchemy import Table
+
+from db import tables
+from models.base import Model, ToManyRelation
 
 
-class Vehicle(BaseModel):
-    __tablename__ = 'vehicles'
+@dataclass
+class Vehicle(Model):
+    _table: ClassVar[Table] = tables.vehicles
+    _to_many_relations: ClassVar[Dict[str, ToManyRelation]] = dict(
+        properties=ToManyRelation(tables.vehicle_properties)
+    )
 
-    title = db.Column(db.String)
-    range = db.Column(db.Integer)
-
-    def __init__(self, **kw):
-        super().__init__(**kw)
-        self._properties = set()
-
-    @property
-    def properties(self):
-        return self._properties
-
-    @properties.setter
-    def add_property(self, prop):
-        self._properties.add(prop)
+    title: str
+    range: int
+    properties: List = field(default_factory=list)
+    id: Optional[int] = None
 
 
-class VehicleProperty(BaseModel):
-    __tablename__ = 'vehicle_properties'
+@dataclass
+class VehicleProperty(Model):
+    _table: ClassVar[Table] = tables.vehicle_properties
 
-    title = db.Column(db.String)
-    value = db.Column(db.String)
-    vehicle_id = db.Column(None, db.ForeignKey('vehicles.id'))
+    property_name: str
+    value: str
+    vehicle_id: int
+    id: Optional[int] = None
