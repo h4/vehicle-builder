@@ -33,7 +33,7 @@ components = sa.Table(
     sa.Column('id', sa.Integer, primary_key=True),
     sa.Column('title', sa.String(32)),
     sa.Column('cad_model', sa.String(32)),
-    sa.Column('sku', sa.String(16)),
+    sa.Column('sku', sa.String(16), unique=True),
     sa.Column('provider', sa.String(16)),
     sa.Column('weight', sa.DECIMAL(precision=3)),
     sa.Column('price', sa.DECIMAL(precision=2)),
@@ -101,4 +101,51 @@ interfaces = sa.Table(
 
     sa.Column('id', sa.Integer, primary_key=True),
     sa.Column('title', sa.String(32)),
+)
+
+vehicle_configurations = sa.Table(
+    'vehicle_configurations', metadata,
+
+    sa.Column('id', sa.Integer, primary_key=True),
+    sa.Column('vehicle_id',
+              sa.ForeignKey('vehicles.id', ondelete='CASCADE'),
+              nullable=False),
+    sa.Column('feature_id',
+              sa.ForeignKey('features.id', ondelete='CASCADE'),
+              nullable=False),
+
+    sa.UniqueConstraint('vehicle_id', 'feature_id',
+                        name='uq_vehicle_configurations__vehicle_feature')
+)
+
+vehicle_functions = sa.Table(
+    'vehicle_functions', metadata,
+
+    sa.Column('id', sa.Integer, primary_key=True),
+    sa.Column('vehicle_id',
+              sa.ForeignKey('vehicles.id', ondelete='CASCADE'),
+              nullable=False),
+    sa.Column('function_id',
+              sa.ForeignKey('functions.id', ondelete='CASCADE'),
+              nullable=False),
+    sa.Column('is_frozen', sa.Boolean,
+              nullable=False, default=False, server_default=sa.text('FALSE')),
+
+    sa.UniqueConstraint('vehicle_id', 'function_id',
+                        name='uq_vehicle_configurations__vehicle_function')
+)
+
+vehicle_connections = sa.Table(
+    'vehicle_connections', metadata,
+
+    sa.Column('id', sa.Integer, primary_key=True),
+    sa.Column('vehicle_function_id',
+              sa.ForeignKey('vehicle_functions.id', ondelete='CASCADE'),
+              nullable=False),
+    sa.Column('component_id',
+              sa.ForeignKey('components.id', ondelete='CASCADE'),
+              nullable=False),
+    sa.Column('interface_id',
+              sa.ForeignKey('interfaces.id', ondelete='CASCADE'),
+              nullable=False),
 )

@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from typing import ClassVar, Dict, Optional, List, Iterable
+from typing import ClassVar, Dict, Optional, Iterable
 
 import sqlalchemy as sa
 from sqlalchemy import Table
@@ -7,7 +7,6 @@ from sqlalchemy import Table
 from db import tables
 from models.base import Model, ToManyRelation
 
-tbl_group_nodes = tables.groups.alias('groups_nodes')
 tbl_children = tables.groups.alias('children')
 
 

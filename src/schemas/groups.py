@@ -1,12 +1,6 @@
 from marshmallow import Schema, fields
 
-
-class UniqueList(fields.List):
-    def _serialize(self, value, attr, obj):
-        value = set(value)
-        if all(x is None for x in value):
-            return []
-        return list(value)
+from schemas.fields import UniqueList
 
 
 class GroupSchema(Schema):

@@ -90,13 +90,29 @@ class Model:
         return query
 
     @classmethod
-    async def fetch_many(cls, query=None):
+    async def fetch_many(cls, query=None, filter_by=None):
         from asyncpgsa import pg
 
         columns = [*cls.c, *cls.to_many_selectables]
+
+        filter_expressions = []
         result = []
+
+        if filter_by is not None:
+            for column_name, filter_rule in filter_by.items():
+                try:
+                    column = getattr(cls.c, column_name)
+                except AttributeError:
+                    raise ValueError(f'Table `{cls.table.name}` does not '
+                                     f'contain column `{column_name}`')
+
+                filter_expressions.append((column == filter_rule))
+
         if query is None:
             query = cls.query()
+
+        if filter_expressions:
+            query = query.where(sa.and_(*filter_expressions))
 
         if len(cls._to_many_relations):
             query = query.group_by(cls.pk_column)
@@ -116,7 +132,7 @@ class Model:
         )
 
     @classmethod
-    async def fetch_by_id(cls, pk):
+    async def fetch_one(cls, pk):
         results = await cls.fetch_by_ids([pk])
         return first(results, None)
 
