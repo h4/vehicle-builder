@@ -1,0 +1,3 @@
+FROM postgres
+ENV POSTGRES_DB vehicle-builder
+COPY docker/psql_dump.sql /docker-entrypoint-initdb.d/
